@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next-sitemap",
-    "start": "next start",
-    "lint": "eslint",
+    "postbuild": "node -e \"require('fs').writeFileSync('out/.nojekyll','')\"",
     "predeploy": "cross-env GH_PAGES=true npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out -t true"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
