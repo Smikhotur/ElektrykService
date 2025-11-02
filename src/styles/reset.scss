@@ -1,0 +1,92 @@
+/* reset.scss */
+
+/* 1) Бокс-модель */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2) Базові значення документу */
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+/* 3) Відступи/списки/заголовки */
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 4) Зображення та медіа */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 5) Форми та інтерактив */
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+  background: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* 6) Посилання */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 7) Таблиці */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 8) Фокус (залишаємо видимим для доступності, можна підлаштувати під тему) */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* 9) Зменшення анімацій для користувачів з prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 10) Екранно-невидимий, але доступний для скрінрідерів контент */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}

@@ -1,66 +1,66 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { ServiceCard } from "@/components/ServiceCard/ServiceCard";
+import SendForm from "./contacts/page";
+import styles from './page.module.scss';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <section className="container">
+        <h1 className={styles.mainTitle}>Електрик у Києві — електромонтажні роботи під ключ</h1>
+        <p className={styles.subTitle}>
+          Монтаж електрики в приватних будинках і квартирах, заміна проводки, освітлення,
+          Smart Home. <br />Працюємо офіційно, гарантія.
+        </p>
+
+        <section style={{ display: "grid", gap: 16, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
+          <ServiceCard
+            title="Електромонтаж у новобудовах"
+            description="Розводка, електрощити, автомати, УЗО, підключення потужних приладів."
+            href="/services/elektro-montazh"
+          />
+          <ServiceCard
+            title="Ремонт і заміна проводки"
+            description="Діагностика, часткова/повна заміна, усунення КЗ."
+            href="/services/remont-provodky"
+          />
+          <ServiceCard
+            title="Освітлення"
+            description="Люстри, споти, LED, димери, сценарії та датчики руху."
+            href="/services/osvitlennya"
+          />
+          <ServiceCard
+            title="Розумний дім"
+            description="Wi-Fi реле, розумні розетки, Google Home/Alexa, сценарії."
+            href="/services/smart-home"
+          />
+        </section>
+        <SendForm />
+      </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            name: "ElektrykService",
+            image: "/logo2.png",
+            url: "https://elektrykservice.com",
+            telephone: "+380996863114",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Київ",
+              addressCountry: "UA",
+            },
+            areaServed: "Kyiv, Ukraine",
+            description:
+              "Професійний електромонтаж у Києві. Розводка, освітлення, Smart Home, ремонт проводки. Гарантія та офіційний договір.",
+            sameAs: [
+              "https://facebook.com/elektrykservice",
+              "https://instagram.com/elektrykservice",
+            ],
+          }),
+        }}
+      />
+    </>
   );
 }

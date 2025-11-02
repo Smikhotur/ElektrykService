@@ -1,0 +1,19 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="boltGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFE066"/>
+      <stop offset="100%" stop-color="#FF9C00"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2CC4FF"/>
+      <stop offset="100%" stop-color="#0A5BFF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Blue ring -->
+  <circle cx="512" cy="512" r="320" fill="none" stroke="url(#ringGrad)" stroke-width="64" />
+
+  <!-- Lightning bolt -->
+  <path d="M572 184 L332 612 H476 L428 840 L692 420 H560 L608 184 Z"
+        fill="url(#boltGrad)"/>
+</svg>

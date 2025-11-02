@@ -1,0 +1,72 @@
+.nav {
+  background-color: transparent;
+  padding: 0;
+}
+
+.desktop {
+  /* стилі для вбудованого (в хедері) меню на широких екранах */
+}
+
+.mobile {
+  padding: 12px 15px; /* трішки внутрішніх відступів у випадаючій панелі */
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  position: relative;
+  color: #f0f0f0;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 18px;
+  transition: color 0.3s ease;
+  font-family: var(--font-roboto), sans-serif;
+
+  &:hover {
+    color: #ffd700;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #ffd700;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.active {
+  color: #ffd700;
+
+  &::after {
+    width: 100%;
+  }
+}
+
+/* Адаптивність */
+@media (max-width: 650px) {
+  .list {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .link {
+    font-size: 16px;
+  }
+}

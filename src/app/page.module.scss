@@ -1,0 +1,26 @@
+.mainTitle {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 36px;
+  line-height: 42px;
+  padding-top: 35px;
+
+  @media (max-width: 568px) {
+    font-size: 28px;
+    line-height: 34x;
+  }
+}
+
+.subTitle {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 18px;
+  font-family: var(--font-roboto), sans-serif;
+  padding: 20px 0 40px;
+
+  @media (max-width: 568px) {
+    font-size: 15px;
+  }
+}
