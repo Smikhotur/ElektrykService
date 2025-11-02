@@ -1,6 +1,9 @@
 @use "../../styles/variables" as *;
 
 .header {
+  /* Фіксуємо контрольовану висоту для відступу меню нижче */
+  --header-h: 60px;
+
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -10,9 +13,9 @@
   gap: 12px;
   align-items: center;
 
+  min-height: var(--header-h);
   padding: 10px 15px;
-  // background: radial-gradient(circle at top left, #007BFF 0%, #0D0D0F 80%);
-  background: radial-gradient(circle at top right, #007BFF 0%, #0D0D0F 80%);
+  background: radial-gradient(circle at top right, #007bff 0%, #0d0d0f 80%);
   box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
   transition: box-shadow 0.3s ease, background 0.3s ease;
 
@@ -20,83 +23,97 @@
     box-shadow:
       0 0 25px rgba(255, 215, 0, 0.7),
       0 0 60px rgba(255, 215, 0, 0.3);
-    background: radial-gradient(circle at top left, #1a1a1d 0%, #0D0D0F 100%);
+    background: radial-gradient(circle at top left, #1a1a1d 0%, #0d0d0f 100%);
   }
 }
 
-.left {
-  display: flex;
-  align-items: center;
-}
-
-.center {
-  display: block; /* приховаємо на мобільних */
-}
+.left { display: flex; align-items: center; }
+.center { display: block; }
 
 .tel {
   font-family: var(--font-roboto), sans-serif;
   transition: color 0.2s ease;
   white-space: nowrap;
-
-  &:hover {
-    color: $borderOrange;
-  }
+  &:hover { color: $borderOrange; }
 }
 
-/* Бургер кнопка */
+/* Бургер */
 .burger {
-  display: none; /* показуємо тільки на мобільних */
-  width: 40px;
-  height: 32px;
+  display: none;
+  width: 40px; height: 32px;
   position: relative;
-  border: none;
-  background: transparent;
-  cursor: pointer;
+  border: none; background: transparent; cursor: pointer;
+  z-index: 1101; /* вище меню, але це в header, тому ок */
 
   span {
-    position: absolute;
-    left: 6px;
-    right: 6px;
-    height: 2px;
+    position: absolute; left: 6px; right: 6px; height: 2px;
     background: #f0f0f0;
-    transition: transform 0.25s ease, opacity 0.2s ease;
+    transition: transform 0.25s ease, opacity 0.2s ease, top 0.25s ease;
   }
   span:nth-child(1) { top: 8px; }
   span:nth-child(2) { top: 15px; }
   span:nth-child(3) { top: 22px; }
+
+  &.burgerOpen {
+    span:nth-child(1) { top: 15px; transform: rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { top: 15px; transform: rotate(-45deg); }
+  }
 }
 
-/* Мобільна панель, що виїжджає з-під header */
-.mobilePanel {
-  position: absolute;
-  top: 100%;
+/* ===== ОВЕРЛЕЙ ПІД ХЕДЕРОМ ===== */
+.overlay {
+  position: fixed;
   left: 0;
   right: 0;
+  top: 88px;   /* починається від низу header */
+  bottom: 0;              /* тільки щоб ловити клік поза меню */
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 900;           /* нижче за header (1000) */
+  /* критично: не використовуємо flex тут */
+  display: block;
+}
 
-  background: rgba(13, 13, 15, 0.98);
-  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-  backdrop-filter: blur(6px);
+/* Панель на всю ширину, зафіксована зверху оверлея */
+.mobilePanel {
+  position: absolute;     /* <— замість relative */
+  left: 0;
+  right: 0;
+  top: 0;
 
-  transform: translateY(-10px);
+  width: 100%;
+  max-height: min(70vh, 520px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
+  background: #0d0d0f;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 18px 15px;
+
+  /* старт: схована над лінією хедера */
+  transform: translateY(-100%);
   opacity: 0;
-  visibility: hidden;
   pointer-events: none;
 
-  transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
-}
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease-in-out;
 
-.open {
-  transform: translateY(0);
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-/* Адаптивність */
-@media (max-width: 650px) {
-  .center { display: none; }         /* ховаємо десктопне меню */
-  .burger { display: inline-block; }  /* показуємо бургер */
-  .header {
-    grid-template-columns: auto 1fr auto; /* logo | tel | burger */
+  &.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
   }
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 650px) {
+  .center { display: none; }
+  .burger { display: inline-block; }
+  .header { grid-template-columns: auto 1fr auto; }
+  .tel { font-size: 14px; }
+
+  /* Якщо на мобільному хедер трохи нижчий/вищий — можна підправити */
+  .header { --header-h: 56px; }
 }

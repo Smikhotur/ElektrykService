@@ -4,6 +4,7 @@ import { Exo_2, Roboto } from 'next/font/google'
 
 import "./globals.scss";
 import { Header } from "@/components/Header/Header";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 
 const exo2 = Exo_2({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body suppressHydrationWarning>
         <Header />
+        <ScrollToTop />
         <main className="main">
           {children}
         </main>

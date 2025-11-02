@@ -15,6 +15,8 @@ interface NavigationProps {
 export default function Navigation({ id, variant = 'desktop', onNavigate }: NavigationProps) {
   const pathname = usePathname();
 
+  console.log(pathname)
+
   const linkClass = (href: string) =>
     `${styles.link} ${pathname === href ? styles.active : ''}`;
 
