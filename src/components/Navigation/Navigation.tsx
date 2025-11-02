@@ -39,7 +39,7 @@ export default function Navigation({ id, variant = 'desktop', onNavigate }: Navi
           <Link
             href="/about"
             className={linkClass('/about')}
-            aria-current={pathname === '/about' ? 'page' : undefined}
+            aria-current={pathname.includes('/about') ? 'page' : undefined}
             onClick={onNavigate}
           >
             Про компанію

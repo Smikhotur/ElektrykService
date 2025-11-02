@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./about.module.scss";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "ElektrykService — про нас | Електрик у Києві",
@@ -78,7 +79,7 @@ export default function AboutPage() {
       </section>
 
       <section className={styles.ctaBlock}>
-        <a className={styles.cta} href="/contacts">Отримати консультацію</a>
+        <Link className={styles.cta} href="/contacts">Отримати консультацію</Link>
         <p className={styles.muted}>Або зателефонуйте: <a className={styles.tel} href="tel:+380996868311">+38&nbsp;(099)&nbsp;686-31-14</a></p>
       </section>
 
