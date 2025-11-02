@@ -31,6 +31,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${exo2.variable} ${roboto.variable}`}
     >
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
+      </head>
       <body suppressHydrationWarning>
         <Header />
         <main className="main">
