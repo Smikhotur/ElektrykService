@@ -42,10 +42,6 @@
     max-width: 100%;
     box-sizing: border-box;
 
-    @media (max-width: 568px) {
-      font-size: 12px;
-    }
-
     &::placeholder {
       color: rgba(255, 255, 255, 0.4);
     }
